@@ -66,7 +66,7 @@
 
     .serif{ font-family:"Playfair Display",serif; }
     .container{ width:100%; max-width:var(--max); margin:0 auto; padding:0 22px; }
-    .section{ padding:120px 0; }
+    .section{ padding: clamp(64px, 10vw, 120px) 0; }
     .section.soft{ background:var(--soft); }
     
     .kicker{
@@ -159,7 +159,7 @@
     .lang-switcher span.active { color: #fff; }
     .nav.compact .lang-switcher span.active { color: var(--ink); }
 
-    /* Carousel */
+    /* Carousel (Mirror of ES: Horizontal logic with portrait aspect-ratio) */
     .space-carousel {
       width: 100vw;
       position: relative;
@@ -168,10 +168,10 @@
       margin-left: -50vw;
       margin-right: -50vw;
       overflow: hidden;
-      padding: 60px 0;
+      padding: 28px 0;
       cursor: grab;
       touch-action: pan-y;
-      min-height: 450px;
+      min-height: auto;
       display: flex;
       align-items: center;
     }
@@ -182,14 +182,14 @@
       will-change: transform;
     }
     .slider-item {
-      width: 75vw;
-      max-width: 900px;
-      aspect-ratio: 16/10;
+      width: 70vw;
+      max-width: 440px;
+      aspect-ratio: 4 / 5;
       flex-shrink: 0;
       border-radius: 12px;
       overflow: hidden;
-      background: #f0f0f0;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+      background: transparent;
+      box-shadow: none;
     }
     .slider-item img {
       pointer-events: none;
@@ -401,6 +401,7 @@
     /* Mobile Responsive */
     @media (max-width: 960px){
       .nav { padding: 16px 0; }
+      .section{ padding: 72px 0; }
       .pricing-grid{ grid-template-columns: 1fr; padding: 0 20px; max-width: 500px; }
       .card.dark { transform: none; }
       .status-indicator { top: 40px; right: 20px; }
@@ -411,6 +412,13 @@
       .info { grid-template-columns: 1fr; }
       .quote { text-align: left; margin: 0; max-width: 100%; }
       .foot-links { justify-content: flex-start; flex-wrap: wrap; }
+      .slider-item{ width: 55vw; max-width: none; }
+    }
+    @media (max-width: 520px){
+      .section{ padding: 56px 0; }
+      .space-carousel{ padding: 20px 0; }
+      .slider-item{ width: 86vw; max-width: none; }
+      .hero-copy{ padding-top: 18px; }
     }
   </style>
 </head>
@@ -448,7 +456,7 @@
   <section class="section">
     <div class="container">
       <h2 class="h2 serif reveal"><em>The</em> Space</h2>
-      <div class="reveal" style="max-width: 700px; margin-top: 32px;">
+      <div class="reveal" style="max-width: 700px; margin-top: 18px;">
         <p style="font-size: 18px; line-height: 1.7; font-weight: 300; color: var(--ink);">
           Coworking Mazaroco is a small space: 3 fixed desks and 10 shared desks.<br>
           There are moments of focus and moments of conversation.<br>
@@ -478,9 +486,9 @@
 
   <section class="section soft">
     <div class="container">
-      <div style="text-align:center; margin-bottom: 60px;">
+      <div style="text-align:center; margin-bottom: 36px;">
         <h2 class="h2 serif reveal">Rates</h2>
-        <div class="reveal" style="max-width: 600px; margin: 32px auto 0;">
+        <div class="reveal" style="max-width: 600px; margin: 18px auto 0;">
           <p style="font-size: 18px; line-height: 1.7; font-weight: 300; color: var(--ink);">
             Simple monthly plans.<br>Trial day available.
           </p>
@@ -616,17 +624,14 @@
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('compact', window.scrollY > 100); });
-    
     const io = new IntersectionObserver((entries) => { 
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }); 
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
     const track = document.getElementById('track');
     const carousel = document.getElementById('carousel');
     let currentX = 0, targetX = 0, isDragging = false, startX = 0, autoSpeed = 0.6, dragVelocity = 0, totalOriginalWidth = 0;
     const lerp = (start, end, t) => start * (1 - t) + end * t;
-
     const calculateDimensions = () => {
       const items = document.querySelectorAll('.slider-item');
       if (items.length > 0) {
@@ -634,7 +639,6 @@
         totalOriginalWidth = (itemWidth + 30) * 9;
       }
     };
-
     const animate = () => {
       if (!isDragging) {
         targetX += autoSpeed;
@@ -656,13 +660,11 @@
       track.style.transform = `translate3d(-${currentX}px, 0, 0)`;
       requestAnimationFrame(animate);
     };
-
     const handleStart = (x) => {
       isDragging = true;
       startX = x;
       dragVelocity = 0;
     };
-
     const handleMove = (x) => {
       if (!isDragging) return;
       const delta = (startX - x) * 1.3; 
@@ -670,7 +672,6 @@
       dragVelocity = delta;
       startX = x;
     };
-
     carousel.addEventListener('mousedown', (e) => { e.preventDefault(); handleStart(e.pageX); });
     carousel.addEventListener('touchstart', (e) => handleStart(e.touches[0].pageX), { passive: true });
     window.addEventListener('mousemove', (e) => handleMove(e.pageX));
