@@ -19,17 +19,17 @@
   <!-- Etiquetas Open Graph -->
   <meta property="og:title" content="COWORKING MAZAROCO | Puerto de la Cruz, Tenerife" />
   <meta property="og:description" content="Coworking pequeño y social en Puerto de la Cruz. Un lugar para trabajar acompañado." />
-  <meta property="og:image" content="https://coworkingmazaroco.com/assets/open.png" />
-  <meta property="og:image:secure_url" content="https://coworkingmazaroco.com/assets/open.png" />
+  <meta property="og:image" content="https://www.coworkingmazaroco.com/assets/og-image.png" />
+  <meta property="og:image:secure_url" content="https://www.coworkingmazaroco.com/assets/og-image.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://coworkingmazaroco.com/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://coworkingmazaroco.com/assets/open.png" />
+  <meta name="twitter:image" content="https://www.coworkingmazaroco.com/assets/og-image.png" />
 
-  <link rel="icon" type="image/png" href="https://coworkingmazaroco.com/assets/favicon.png">
+  <link rel="icon" type="image/png" href="https://www.coworkingmazaroco.com/assets/favicon.png">
   <link rel="canonical" href="https://coworkingmazaroco.com/" />
 
   <!-- Fuentes -->
@@ -159,7 +159,7 @@
     .lang-switcher span.active { color: #fff; }
     .nav.compact .lang-switcher span.active { color: var(--ink); }
 
-    /* Carrusel */
+    /* Carrusel Vertical */
     .space-carousel {
       width: 100vw;
       position: relative;
@@ -171,7 +171,7 @@
       padding: 60px 0;
       cursor: grab;
       touch-action: pan-y;
-      min-height: 450px;
+      min-height: 620px;
       display: flex;
       align-items: center;
     }
@@ -182,9 +182,9 @@
       will-change: transform;
     }
     .slider-item {
-      width: 75vw;
-      max-width: 900px;
-      aspect-ratio: 16/10;
+      width: 70vw;
+      max-width: 440px;
+      aspect-ratio: 4 / 5;
       flex-shrink: 0;
       border-radius: 12px;
       overflow: hidden;
@@ -194,6 +194,9 @@
     .slider-item img {
       pointer-events: none;
       -webkit-user-drag: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* Héroe */
@@ -431,7 +434,7 @@
   </header>
 
   <main class="hero">
-    <div class="hero-bg"><img src="https://coworkingmazaroco.com/assets/IM1_9810.jpg" alt="Fondo" /></div>
+    <div class="hero-bg"><img src="https://www.coworkingmazaroco.com/assets/hero.jpg" alt="Fondo" /></div>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-copy">
@@ -457,14 +460,18 @@
     
     <div class="space-carousel" id="carousel">
       <div class="slider-track" id="track">
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9810.jpg" alt="1" draggable="false"></div>
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9815.jpg" alt="2" draggable="false"></div>
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9816.jpg" alt="3" draggable="false"></div>
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9817.jpg" alt="4" draggable="false"></div>
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9876.jpg" alt="5" draggable="false"></div>
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9884.jpg" alt="6" draggable="false"></div>
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9810.jpg" alt="c1" draggable="false"></div>
-        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9815.jpg" alt="c2" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/1.png" alt="1" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/2.png" alt="2" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/3.png" alt="3" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/4.png" alt="4" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/5.png" alt="5" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/6.png" alt="6" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/7.png" alt="7" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/8.png" alt="8" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/9.png" alt="9" draggable="false"></div>
+        <!-- Clones para el bucle infinito visual -->
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/1.png" alt="c1" draggable="false"></div>
+        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/2.png" alt="c2" draggable="false"></div>
       </div>
     </div>
   </section>
@@ -621,7 +628,7 @@
       const items = document.querySelectorAll('.slider-item');
       if (items.length > 0) {
         const itemWidth = items[0].getBoundingClientRect().width;
-        totalOriginalWidth = (itemWidth + 30) * 6;
+        totalOriginalWidth = (itemWidth + 30) * 9;
       }
     };
 
