@@ -1,40 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ651RP7ZB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RZ651RP7ZB');
+  </script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>COWORKING MAZAROCO | Puerto de la Cruz, Tenerife</title>
   <meta name="description" content="Coworking in Puerto de la Cruz, Tenerife. Small, social coworking with fixed desks and shared desks. Trial day available." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   
-  <!-- Open Graph Image -->
-  <meta property="og:image" content="https://www.coworkingmazaroco.com/assets/IM1_9810.jpg" />
+  <!-- Optimized Open Graph Tags -->
   <meta property="og:title" content="COWORKING MAZAROCO | Puerto de la Cruz, Tenerife" />
+  <meta property="og:description" content="Small, social coworking in Puerto de la Cruz. A place to work together." />
+  <meta property="og:image" content="https://coworkingmazaroco.com/assets/open.png" />
+  <meta property="og:image:secure_url" content="https://coworkingmazaroco.com/assets/open.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://coworkingmazaroco.com/en/" />
   <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://coworkingmazaroco.com/assets/open.png" />
 
-  <link rel="icon" type="image/png" href="https://www.coworkingmazaroco.com/assets/favicon.png">
+  <link rel="icon" type="image/png" href="https://coworkingmazaroco.com/assets/favicon.png">
   <link rel="canonical" href="https://coworkingmazaroco.com/en/" />
-  <link rel="alternate" hreflang="en" href="https://coworkingmazaroco.com/en/" />
-  <link rel="alternate" hreflang="es" href="https://coworkingmazaroco.com/" />
-  <link rel="alternate" hreflang="x-default" href="https://coworkingmazaroco.com/" />
-
-  <script>
-    // Language detection and persistence logic
-    (function() {
-      const savedLang = localStorage.getItem('preferredLang');
-      const browserLang = navigator.language.startsWith('en') ? 'en' : 'es';
-      const targetLang = savedLang || browserLang;
-
-      if (targetLang === 'es' && window.location.pathname.includes('/en/')) {
-        window.location.href = '/';
-      }
-    })();
-
-    function setLanguagePreference(lang) {
-      localStorage.setItem('preferredLang', lang);
-      window.location.href = (lang === 'en') ? '/en/' : '/';
-    }
-  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -152,15 +148,14 @@
       font-size: 10px;
       letter-spacing: .15em;
       font-weight: 600;
-      display: flex;
-      gap: 8px;
+      display: flex; gap: 8px;
       color: rgba(255,255,255,0.4);
       transition: color .4s ease;
     }
     .nav.compact .lang-switcher { color: rgba(0,0,0,0.3); }
-    .lang-switcher span { cursor: pointer; transition: color .3s ease; }
-    .lang-switcher span:hover { color: #fff; }
-    .nav.compact .lang-switcher span:hover { color: var(--ink); }
+    .lang-switcher a, .lang-switcher span { cursor: pointer; transition: color .3s ease; }
+    .lang-switcher a:hover { color: #fff; }
+    .nav.compact .lang-switcher a:hover { color: var(--ink); }
     .lang-switcher span.active { color: #fff; }
     .nav.compact .lang-switcher span.active { color: var(--ink); }
 
@@ -243,6 +238,7 @@
       display:flex;
       flex-direction:column;
       min-height: 460px;
+      position: relative;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .card.dark{
@@ -262,6 +258,65 @@
     .price{ font-size: 42px; line-height: 1; font-style: italic; margin: 0; }
     .price small{ font-family: Inter,sans-serif; font-style: normal; font-size: 12px; color: rgba(0,0,0,.4); margin-left: 4px; }
     .card.dark .price small{ color: rgba(255,255,255,0.4); }
+
+    /* Availability Indicator */
+    .status-indicator {
+      position: absolute;
+      top: 40px;
+      right: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      text-align: right;
+    }
+    .status-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .card.dark .status-label { color: rgba(255,255,255,0.95); }
+    .dot {
+      width: 5px;
+      height: 5px;
+      background: #22c55e;
+      border-radius: 50%;
+      position: relative;
+    }
+    .dot::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      background: #22c55e;
+      opacity: 0.4;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.4; }
+      70% { transform: scale(2.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+    .progress-slots {
+      display: grid;
+      width: 60px;
+      height: 2.5px;
+      gap: 1.5px;
+    }
+    .slot {
+      background: rgba(0,0,0,0.1);
+      border-radius: 0.5px;
+    }
+    .card.dark .slot { background: rgba(255,255,255,0.2); }
+    .slot.active, .card.dark .slot.active {
+      background: #22c55e !important;
+    }
+
     .list{
       margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:14px;
       color:rgba(0,0,0,0.6); font-size:9px; letter-spacing: .06em; text-transform:uppercase; flex-grow: 1;
@@ -345,6 +400,7 @@
       .nav { padding: 16px 0; }
       .pricing-grid{ grid-template-columns: 1fr; padding: 0 20px; max-width: 500px; }
       .card.dark { transform: none; }
+      .status-indicator { top: 40px; right: 20px; }
       .split-location { grid-template-columns: 1fr; }
       .split-text { padding: 80px 22px; }
       .split-map { height: 400px; border-left: 0; border-top: 1px solid var(--line); }
@@ -366,16 +422,16 @@
           <div class="sub">BY EL MICHI DEL PUERTO</div>
         </div>
         <div class="lang-switcher">
-          <span onclick="setLanguagePreference('es')">ES</span>
+          <a href="../">ES</a>
           <span>/</span>
-          <span class="active" onclick="setLanguagePreference('en')">EN</span>
+          <span class="active">EN</span>
         </div>
       </div>
     </div>
   </header>
 
   <main class="hero">
-    <div class="hero-bg"><img src="https://www.coworkingmazaroco.com/assets/IM1_9810.jpg" alt="Background" /></div>
+    <div class="hero-bg"><img src="https://coworkingmazaroco.com/assets/IM1_9810.jpg" alt="Background" /></div>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-copy">
@@ -401,14 +457,14 @@
     
     <div class="space-carousel" id="carousel">
       <div class="slider-track" id="track">
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9810.jpg" alt="1" draggable="false"></div>
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9815.jpg" alt="2" draggable="false"></div>
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9816.jpg" alt="3" draggable="false"></div>
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9817.jpg" alt="4" draggable="false"></div>
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9876.jpg" alt="5" draggable="false"></div>
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9884.jpg" alt="6" draggable="false"></div>
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9810.jpg" alt="c1" draggable="false"></div>
-        <div class="slider-item"><img src="https://www.coworkingmazaroco.com/assets/IM1_9815.jpg" alt="c2" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9810.jpg" alt="1" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9815.jpg" alt="2" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9816.jpg" alt="3" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9817.jpg" alt="4" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9876.jpg" alt="5" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9884.jpg" alt="6" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9810.jpg" alt="c1" draggable="false"></div>
+        <div class="slider-item"><img src="https://coworkingmazaroco.com/assets/IM1_9815.jpg" alt="c2" draggable="false"></div>
       </div>
     </div>
   </section>
@@ -427,6 +483,20 @@
         <div class="card reveal">
           <div class="plan-kicker">Shared Desk</div>
           <div class="price-container"><div class="price">100€ <small>/ month</small></div></div>
+
+          <!-- Availability Indicator -->
+          <div class="status-indicator">
+            <div class="status-label">
+              <span class="dot"></span>
+              <span>4 / 10 Available</span>
+            </div>
+            <!-- Occupied slots on left, Available (active) on right -->
+            <div class="progress-slots" style="grid-template-columns: repeat(10, 1fr);">
+                <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+                <div class="slot active"></div><div class="slot active"></div><div class="slot active"></div><div class="slot active"></div>
+            </div>
+          </div>
+
           <ul class="list">
             <li>Shared desk</li>
             <li>Call room / short meetings</li>
@@ -438,6 +508,20 @@
         <div class="card dark reveal">
           <div class="plan-kicker">Fixed Desk</div>
           <div class="price-container"><div class="price">170€ <small>/ month</small></div></div>
+
+          <!-- Availability Indicator -->
+          <div class="status-indicator">
+            <div class="status-label">
+              <span class="dot"></span>
+              <span>2 / 3 Available</span>
+            </div>
+            <!-- Occupied slots on left, Available (active) on right -->
+            <div class="progress-slots" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="slot"></div>
+                <div class="slot active"></div><div class="slot active"></div>
+            </div>
+          </div>
+
           <ul class="list">
             <li>Personal Desk</li>
             <li>Ergonomic Chair + Screen</li>
@@ -450,6 +534,18 @@
         <div class="card reveal">
           <div class="plan-kicker">Private Office</div>
           <div class="price-container"><div class="price">300€ <small>/ month</small></div></div>
+
+          <!-- Availability Indicator -->
+          <div class="status-indicator">
+            <div class="status-label">
+              <span class="dot"></span>
+              <span>1 / 1 Available</span>
+            </div>
+            <div class="progress-slots" style="grid-template-columns: repeat(1, 1fr);">
+                <div class="slot active"></div>
+            </div>
+          </div>
+
           <ul class="list">
             <li>Up to two people</li>
             <li>Bring your own desks and chairs or use ours</li>
